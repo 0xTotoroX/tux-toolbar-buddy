@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="144" viewBox="0 0 360 144" role="img" aria-label="Before: a heavier menu trigger with text, status dot, and version label">
+  <rect width="360" height="144" rx="20" fill="#181818"/>
+  <rect x="52" y="48" width="256" height="48" rx="12" fill="#242424" stroke="#3b3b3b"/>
+  <circle cx="80" cy="72" r="5" fill="#39d353"/>
+  <text x="98" y="78" fill="#f2f2f2" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="17" font-weight="650">Codex++</text>
+  <text x="184" y="78" fill="#a7a7a7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13">v0.1.0</text>
+  <path d="M264 64l8 8-8 8" fill="none" stroke="#b7b7b7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
