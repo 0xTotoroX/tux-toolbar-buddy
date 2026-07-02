@@ -1,4 +1,8 @@
-# tux-toolbar-buddy
+<p align="center">
+  <img src="assets/tux-toolbar-buddy-avatar.png" alt="Tux Toolbar Buddy" width="96">
+</p>
+
+<h1 align="center">tux-toolbar-buddy</h1>
 
 一个给 [Codex++](https://github.com/BigPizzaV3/CodexPlusPlus) 使用的轻量用户脚本。
 
@@ -6,11 +10,12 @@
 
 ## 效果对比
 
-安装前，菜单入口会显示文字、状态点和版本信息。安装后，入口保留原来的点击行为，但视觉上只显示一个 Tux 图标。
+安装前，菜单入口会显示文字、状态点和版本信息。安装后，入口保留原来的点击行为，但视觉上只显示一个 Tux 图标。下面四张图按内容物居中裁剪，分别展示浅色和深色主题下的变化。
 
-| Before | After |
-| --- | --- |
-| <img src="assets/tux-toolbar-buddy-before.svg" alt="原始菜单入口示意图" width="360"> | <img src="assets/tux-toolbar-buddy-after.png" alt="Tux 工具栏按钮" width="152"> |
+| Theme | Before | After |
+| --- | --- | --- |
+| Light | <img src="assets/status-before-light.png" alt="浅色主题下的原始菜单入口" width="360"> | <img src="assets/status-after-light.png" alt="浅色主题下的 Tux 工具栏按钮" width="360"> |
+| Dark | <img src="assets/status-before-dark.png" alt="深色主题下的原始菜单入口" width="360"> | <img src="assets/status-after-dark.png" alt="深色主题下的 Tux 工具栏按钮" width="360"> |
 
 ## 功能范围
 
