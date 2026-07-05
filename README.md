@@ -7,6 +7,7 @@
 一个给 [Codex++](https://github.com/BigPizzaV3/CodexPlusPlus) 使用的轻量用户脚本。
 
 它会把原本偏重的菜单入口改成一个紧凑的 Tux 工具栏按钮，并隐藏状态点和版本信息，让顶部工具栏更安静。
+隐藏只发生在视觉层；脚本保留 Codex++ 原本的版本文本、状态节点和语义属性，避免影响 Stepwise 等增强功能的状态探测。
 
 ## 效果对比
 
@@ -39,6 +40,7 @@
 
 - 运行位置：由 Codex++ 作为用户脚本注入到 Codex Desktop 的 renderer 页面。
 - 工作方式：用 `MutationObserver` 监听页面变化，找到 Codex++ 菜单入口后做最小 DOM 标记和样式覆盖。
+- Stepwise 兼容：首次套用样式后会短暂重试触发 Stepwise 扫描，修正用户脚本加载顺序导致的首扫过早。
 - 诊断入口：脚本会暴露 `window.__tuxToolbarBuddy`，可用于手动执行 `normalize()` 或 `dispose()`。
 - 兼容清理：会主动清理旧版 `lite menu entry` 和早期 `penguin toolbar button` 脚本残留，避免出现双图标。
 
