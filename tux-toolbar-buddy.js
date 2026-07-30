@@ -2,12 +2,12 @@
 @codex-plus-script
 name: Tux Toolbar Buddy
 description: Replace the heavy menu trigger with a compact Tux toolbar button and hide status/version clutter.
-version: 0.1.1
+version: 0.1.2
 author: 0xTotoroX
 */
 
 (() => {
-  const SCRIPT_VERSION = "0.1.1";
+  const SCRIPT_VERSION = "0.1.2";
   const STYLE_ID = "tux-toolbar-buddy-style";
   const API_KEY = "__tuxToolbarBuddy";
   const LEGACY_API_KEYS = ["__codexPlusLiteMenuEntry", "__codexPlusMenuEntryLite", "__codexPlusPenguinToolbarButton"];
@@ -68,7 +68,7 @@ author: 0xTotoroX
       document.head.appendChild(style);
     }
 
-    style.textContent = `
+    const css = `
       #codex-plus-menu .codex-plus-backend-indicator,
       #codex-plus-menu [data-codex-backend-indicator],
       [data-codex-plus-menu="true"] .codex-plus-backend-indicator,
@@ -141,6 +141,7 @@ author: 0xTotoroX
         border: 0 !important;
       }
     `;
+    if (style.textContent !== css) style.textContent = css;
   }
 
   function readAttribute(element, name) {
@@ -185,7 +186,9 @@ author: 0xTotoroX
     if (!touchedIndicators.has(indicator)) {
       touchedIndicators.set(indicator, readAttribute(indicator, "aria-hidden"));
     }
-    indicator.setAttribute("aria-hidden", "true");
+    if (indicator.getAttribute("aria-hidden") !== "true") {
+      indicator.setAttribute("aria-hidden", "true");
+    }
   }
 
   function rememberButton(button) {
@@ -215,7 +218,9 @@ author: 0xTotoroX
   function normalizeButton(button) {
     const state = rememberButton(button);
     removeLegacyArtifacts(button);
-    button.dataset.tuxToolbarBuddy = "true";
+    if (button.dataset.tuxToolbarBuddy !== "true") {
+      button.dataset.tuxToolbarBuddy = "true";
+    }
 
     button
       .querySelectorAll(".codex-plus-backend-indicator, [data-codex-backend-indicator]")
@@ -265,8 +270,27 @@ author: 0xTotoroX
     });
   }
 
+  function mutationNeedsNormalize(records) {
+    return records.some((record) => {
+      const target = record.target.nodeType === Node.ELEMENT_NODE
+        ? record.target
+        : record.target.parentElement;
+      if (target?.id === STYLE_ID) return false;
+      if (target?.closest?.("#codex-plus-menu, [data-codex-plus-menu='true']")) return true;
+
+      return [...record.addedNodes, ...record.removedNodes].some((node) =>
+        node.nodeType === Node.ELEMENT_NODE
+        && (node.id === STYLE_ID
+          || node.matches?.("#codex-plus-menu, [data-codex-plus-menu='true']")
+          || node.querySelector?.("#codex-plus-menu, [data-codex-plus-menu='true']")),
+      );
+    });
+  }
+
   normalize();
-  observer = new MutationObserver(scheduleNormalize);
+  observer = new MutationObserver((records) => {
+    if (mutationNeedsNormalize(records)) scheduleNormalize();
+  });
   observer.observe(document.documentElement, {
     subtree: true,
     childList: true,

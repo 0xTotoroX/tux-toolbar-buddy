@@ -5,12 +5,14 @@ const source = fs.readFileSync("tux-toolbar-buddy.js", "utf8");
 
 const requiredSnippets = [
   "name: Tux Toolbar Buddy",
-  "version: 0.1.1",
+  "version: 0.1.2",
   "author: 0xTotoroX",
   "__tuxToolbarBuddy",
   "data-tux-toolbar-buddy",
   "__codexStepwisePanel?.scan?.()",
   "dispose()",
+  "if (style.textContent !== css) style.textContent = css;",
+  "mutationNeedsNormalize(records)",
 ];
 
 const forbiddenSnippets = [
